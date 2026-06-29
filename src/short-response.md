@@ -37,6 +37,8 @@ But an error is thrown.
 
 **Your Answer:**
 
+The error is probably `Cannot read properties of null`, because `document.querySelector('#my-button')` is returning `null`. This happens because the script is in the head, so the JavaScript runs before the button exists on the page. To fix it, move the script tag to the bottom of the body or add `defer` to the script tag.
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -60,6 +62,8 @@ div.addEventListener('click', (event) => {
 When a user clicks the button, both `event.target` and `event.currentTarget` are logged. Explain what each property represents in this scenario and why they might be different.
 
 **Your Answer:**
+
+`event.target` is the actual element that was clicked (the button), while `event.currentTarget` is the element with the event listener attached. They're different because clicks on the button bubble up to the div. `event.target`  is what you actually clicked, while `event.currentTarget` shows where the listener is, what is waiting to be clicked.
 
 ## Question 3: Creating Elements Dynamically
 
@@ -95,6 +99,8 @@ document.body.append(productCard);
 However, when the page loads and the code is executed, the user isn't able to see the image, product name or product price. What is the issue with this code?
 
 **Your Answer:**
+
+The child elements aren't added to the `productCard` div. The code creates all the elements and sets their properties, but never appends the image, name, and price to the card. To fix it, add productCard.append(productImage, productName, productPrice) before appending the card to the body.
 
 
 ## Question 4: Event Delegation and event.target.closest()
@@ -136,6 +142,10 @@ todoList.addEventListener('click', (event) => {
 
 **Your Answer:**
 
+1. This is called event delegation. The alternative is adding listeners to each `<li>` (list item) individually. Event delegation is better because it uses one listener instead of multiple.
+
+2. `event.target.closest('li')` finds the nearest `<li>`(list item) ancestor from wherever you clicked. This is essential because you might click the `<p>` element inside the `<li>`, but you still need to find and update the parent list item.
+
 ## Question 5: NodeList
 
 Do some independent learning and reading about the `querySelectorAll()` method. Then, answer these questions:
@@ -144,3 +154,6 @@ Do some independent learning and reading about the `querySelectorAll()` method. 
 2. What is the difference between a `NodeList` and an array? Why is it important to know this difference?
 
 **Your Answer:**
+
+1. `querySelector()` returns one element (the first match), while `querySelectorAll()` returns all matching elements. Use `querySelectorAll()` when you need to select multiple elements, like all the buttons or all the paragraphs with a specific class.
+2. NodeLists are similar to arrays, but many array methods can't be used on it. This is important because if you want to use array methods like `map` or `filter`, you may need to turn the NodeList into an array first.
