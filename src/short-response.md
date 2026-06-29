@@ -37,6 +37,8 @@ But an error is thrown.
 
 **Your Answer:**
 
+The error is probably `Cannot read properties of null`, because `document.querySelector('#my-button')` is returning `null`. This happens because the script is in the head, so the JavaScript runs before the button exists on the page. To fix it, move the script tag to the bottom of the body or add `defer` to the script tag.
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -154,4 +156,4 @@ Do some independent learning and reading about the `querySelectorAll()` method. 
 **Your Answer:**
 
 1. `querySelector()` returns one element (the first match), while `querySelectorAll()` returns all matching elements. Use `querySelectorAll()` when you need to select multiple elements, like all the buttons or all the paragraphs with a specific class.
-2. Nodelists are similar to arrays, but many array methodds can't be used onit
+2. NodeLists are similar to arrays, but many array methods can't be used on it. This is important because if you want to use array methods like `map` or `filter`, you may need to turn the NodeList into an array first.

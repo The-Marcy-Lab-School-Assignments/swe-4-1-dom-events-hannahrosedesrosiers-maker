@@ -32,7 +32,7 @@ const playlists = [
 ];
 
 
-const playlistGrid = document.querySelector('#playlists - grid')
+const playlistGrid = document.querySelector('#playlists-grid')
 const nowPlaying = document.querySelector('#now-playing-title')
 
 playlists.forEach((playlist) => { 
